@@ -1,0 +1,7 @@
+This file represents vla-architecture.png
+The image should show:
+- A central VLA system module
+- Input streams: Visual Input, Linguistic Input (Voice/Text), Action Context
+- Processing blocks: Vision Processing, Language Understanding, Action Generation
+- Output: Coordinated Robot Actions
+- Arrows showing the flow of information between components

@@ -1,0 +1,605 @@
+/**
+ * CSS files with the .module.css suffix will be treated as CSS modules
+ * and scoped locally.
+ */
+
+.heroBanner {
+  padding: 4rem 0;
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(135deg, #2b3137 0%, #1a1f25 100%); /* Dark gradient background */
+  color: white;
+  min-height: 600px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@media screen and (max-width: 996px) {
+  .heroBanner {
+    padding: 2rem;
+    min-height: auto;
+  }
+}
+
+.heroContainer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+@media screen and (max-width: 996px) {
+  .heroContainer {
+    flex-direction: column;
+  }
+}
+
+.heroLeft {
+  flex: 1;
+  min-width: 0; /* Allows flex item to shrink below content size */
+}
+
+.heroRight {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.imageContainer {
+  position: relative;
+  width: 100%;
+  max-width: 400px;
+  height: 400px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  overflow: hidden;
+}
+
+.roboticsImage {
+  width: 100%;
+  height: 100%;
+  object-fit: contain; /* Changed from cover to contain to show full image */
+  border-radius: 12px;
+  padding: 20px; /* Add padding to prevent image from touching edges */
+  max-width: calc(100% - 40px); /* Account for padding */
+  max-height: calc(100% - 40px);
+}
+
+/* Responsive adjustments for the image container */
+@media screen and (max-width: 996px) {
+  .imageContainer {
+    max-width: 300px;
+    height: 300px;
+    margin: 1rem auto;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .imageContainer {
+    max-width: 250px;
+    height: 250px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .imageContainer {
+    max-width: 200px;
+    height: 200px;
+  }
+}
+
+.placeholderText {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 1.2rem;
+}
+
+.hero__title {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+  line-height: 1.2;
+  text-align: left;
+}
+
+@media screen and (max-width: 996px) {
+  .hero__title {
+    font-size: 2rem;
+    text-align: center;
+  }
+}
+
+.hero__subtitle {
+  font-size: 1.2rem;
+  margin-bottom: 2rem;
+  line-height: 1.6;
+  text-align: left;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+@media screen and (max-width: 996px) {
+  .hero__subtitle {
+    text-align: center;
+    font-size: 1.1rem;
+  }
+}
+
+.buttons {
+  margin-bottom: 2rem;
+  display: flex;
+  justify-content: flex-start;
+}
+
+@media screen and (max-width: 996px) {
+  .buttons {
+    justify-content: center;
+  }
+}
+
+.modulesSection {
+  position: relative;
+  margin-bottom: 2rem;
+}
+
+.modulesButton {
+  background: var(--ifm-color-primary);
+  color: white;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.modulesButton:hover {
+  background: var(--ifm-color-primary-dark);
+}
+
+.modulesDropdown {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 8px;
+  padding: 1rem;
+  margin-top: 0.5rem;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+  z-index: 1000;
+  max-height: 400px;
+  overflow-y: auto;
+  color: var(--ifm-font-color-base);
+}
+
+.moduleItem {
+  margin-bottom: 1.5rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.moduleItem:last-child {
+  margin-bottom: 0;
+  padding-bottom: 0;
+  border-bottom: none;
+}
+
+.moduleHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.75rem;
+}
+
+.moduleDuration {
+  background: var(--ifm-color-primary);
+  color: white;
+  padding: 0.25rem 0.75rem;
+  border-radius: 12px;
+  font-size: 0.8rem;
+  font-weight: bold;
+}
+
+.moduleTitle {
+  font-size: 1.2rem;
+  margin: 0;
+  color: var(--ifm-color-primary);
+}
+
+.chaptersList {
+  padding-left: 1rem;
+}
+
+.chapterItem {
+  display: block;
+  margin-bottom: 0.75rem;
+  padding: 0.5rem;
+  border-radius: 4px;
+  text-decoration: none;
+  transition: background-color 0.2s;
+}
+
+.chapterItem:hover {
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
+.chapterTitle {
+  font-size: 1rem;
+  margin: 0 0 0.25rem 0;
+  color: var(--ifm-color-primary);
+}
+
+.chapterDescription {
+  font-size: 0.9rem;
+  color: var(--ifm-font-color-secondary);
+  margin: 0;
+}
+
+.contentInfo {
+  margin-bottom: 2rem;
+  padding: 1rem;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+}
+
+.infoText {
+  margin: 0.75rem 0;
+  line-height: 1.5;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.infoText:first-child {
+  margin-top: 0;
+}
+
+.infoText:last-child {
+  margin-bottom: 0;
+}
+
+.progressSection {
+  margin-bottom: 1rem;
+}
+
+.progressTitle {
+  font-size: 1rem;
+  margin-bottom: 0.5rem;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.progressBar {
+  width: 100%;
+  height: 12px;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 6px;
+  overflow: hidden;
+  margin-bottom: 0.5rem;
+}
+
+.progressFill {
+  height: 100%;
+  background: var(--ifm-color-primary);
+  transition: width 0.3s ease;
+}
+
+.progressText {
+  margin: 0;
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.researchContent {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.contentCard {
+  flex: 1;
+  min-width: 250px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.cardImageContainer {
+  width: 100%;
+  height: 120px;
+  margin-bottom: 0.75rem;
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.cardImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.cardDescription {
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.85);
+  margin: 0 0 0.75rem 0;
+  line-height: 1.4;
+}
+
+.contentTitle {
+  font-size: 1rem;
+  margin: 0 0 0.75rem 0;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.contentList {
+  margin: 0;
+  padding-left: 1.2rem;
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.8);
+  line-height: 1.5;
+  flex-grow: 1;
+}
+
+.progressButton {
+  margin-top: 0.75rem;
+  background: var(--ifm-color-primary);
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.progressButton:hover {
+  background: var(--ifm-color-primary-dark);
+}
+
+@media screen and (max-width: 768px) {
+  .researchContent {
+    flex-direction: column;
+  }
+
+  .contentCard {
+    min-width: 100%;
+  }
+}
+
+/* About Section */
+.aboutSection {
+  padding: 4rem 0;
+  background-color: var(--ifm-background-color);
+  color: var(--ifm-font-color-base);
+}
+
+.aboutContainer {
+  display: flex;
+  gap: 3rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+@media screen and (max-width: 996px) {
+  .aboutContainer {
+    flex-direction: column;
+  }
+}
+
+.aboutContent {
+  flex: 2;
+}
+
+.aboutTitle {
+  font-size: 2rem;
+  margin-bottom: 1.5rem;
+  color: var(--ifm-color-primary);
+}
+
+.aboutDescription {
+  font-size: 1.1rem;
+  line-height: 1.7;
+  margin-bottom: 2.5rem;
+  color: var(--ifm-font-color-secondary);
+}
+
+.authorsSection {
+  margin-top: 2rem;
+}
+
+.authorsTitle {
+  font-size: 1.5rem;
+  margin-bottom: 1.5rem;
+  color: var(--ifm-color-primary);
+}
+
+.authorsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+}
+
+.authorCard {
+  background: white;
+  border-radius: 8px;
+  padding: 1.5rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.authorCard:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.15);
+}
+
+.authorAvatar {
+  width: 80px;
+  height: 80px;
+  margin: 0 auto 1rem;
+  border-radius: 50%;
+  background: var(--ifm-color-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.authorInitials {
+  color: white;
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.authorName {
+  font-size: 1.2rem;
+  margin: 0.5rem 0;
+  color: var(--ifm-font-color-base);
+}
+
+.authorTitle {
+  font-size: 0.9rem;
+  color: var(--ifm-color-primary);
+  margin: 0.25rem 0;
+  font-style: italic;
+}
+
+.authorBio {
+  font-size: 0.9rem;
+  color: var(--ifm-font-color-secondary);
+  margin: 0.5rem 0 0;
+}
+
+.copyrightSection {
+  margin-top: 2rem;
+  padding: 1.5rem;
+  background: #f8f9fa;
+  border-radius: 8px;
+  border-left: 4px solid var(--ifm-color-primary);
+}
+
+.copyrightTitle {
+  font-size: 1.1rem;
+  margin: 0 0 1rem 0;
+  color: var(--ifm-color-primary);
+}
+
+.copyrightText {
+  font-size: 0.9rem;
+  color: var(--ifm-font-color-secondary);
+  line-height: 1.6;
+  margin: 0;
+}
+
+.visualElements {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.graphContainer, .flowChartContainer, .codeSnippet {
+  background: white;
+  border-radius: 8px;
+  padding: 1.5rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.graphTitle {
+  font-size: 1.1rem;
+  margin: 0 0 1rem 0;
+  color: var(--ifm-color-primary);
+  font-weight: 600;
+}
+
+.graphPlaceholder {
+  text-align: center;
+}
+
+.graphBar {
+  width: 100%;
+  height: 20px;
+  background: #e0e0e0;
+  border-radius: 10px;
+  overflow: hidden;
+  margin-bottom: 0.5rem;
+}
+
+.graphFill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--ifm-color-primary), var(--ifm-color-primary-light));
+  border-radius: 10px;
+  transition: width 0.3s ease;
+}
+
+.graphLabels {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.8rem;
+  color: var(--ifm-font-color-secondary);
+}
+
+.flowChartPlaceholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  padding: 1rem;
+  background: #f8f9fa;
+  border-radius: 4px;
+}
+
+.flowStep {
+  padding: 0.5rem 1rem;
+  background: var(--ifm-color-primary);
+  color: white;
+  border-radius: 20px;
+  font-size: 0.9rem;
+}
+
+.flowArrow {
+  font-size: 1.2rem;
+  color: var(--ifm-color-primary);
+}
+
+.codeSnippet {
+  font-family: var(--ifm-font-family-monospace);
+}
+
+.codeBlock {
+  margin: 0;
+  padding: 1rem;
+  background: #2d2d2d;
+  color: #f8f8f2;
+  border-radius: 4px;
+  overflow-x: auto;
+  font-size: 0.85rem;
+  line-height: 1.5;
+}
+
+@media screen and (max-width: 996px) {
+  .aboutSection {
+    padding: 2rem 0;
+  }
+
+  .aboutContainer {
+    gap: 2rem;
+  }
+
+  .visualElements {
+    order: -1; /* Show visual elements first on mobile */
+  }
+}

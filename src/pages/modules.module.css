@@ -1,0 +1,126 @@
+.modulesContainer {
+  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+  min-height: 100vh;
+  padding: 2rem 0;
+}
+
+.heroTitle {
+  text-align: center;
+  margin-bottom: 2rem;
+  color: #2b3137;
+}
+
+.modulesGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+.moduleCard {
+  background: white;
+  border-radius: 12px;
+  padding: 1.5rem;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.moduleCard:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+}
+
+.moduleIcon {
+  margin-bottom: 1rem;
+  padding: 1rem;
+  border-radius: 50%;
+  background-color: rgba(46, 133, 91, 0.1);
+  transition: background-color 0.3s ease;
+}
+
+.moduleCard:hover .moduleIcon {
+  background-color: rgba(46, 133, 91, 0.2);
+}
+
+.moduleCard h3 {
+  color: #2b3137;
+  margin-top: 0;
+  margin-bottom: 0.75rem;
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+
+.moduleCard p {
+  color: #60676d;
+  margin-bottom: 1rem;
+  line-height: 1.6;
+  flex-grow: 1;
+}
+
+.moduleTopics {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  justify-content: center;
+  margin-bottom: 1rem;
+  width: 100%;
+}
+
+.topicTag {
+  background-color: #e9ecef;
+  color: #495057;
+  padding: 0.25rem 0.75rem;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 500;
+}
+
+.moduleCard:hover .topicTag {
+  background-color: #d8e2dc;
+}
+
+.moduleLink {
+  display: inline-block;
+  background-color: #2e855b;
+  color: white;
+  padding: 0.75rem 1.5rem;
+  border-radius: 6px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  align-self: center;
+  margin-top: auto;
+  border: none;
+}
+
+.moduleLink:hover {
+  background-color: #246a4a;
+  color: white;
+  text-decoration: none;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(46, 133, 91, 0.3);
+}
+
+@media (max-width: 1024px) {
+  .modulesGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .modulesGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .modulesContainer {
+    padding: 1rem 0;
+  }
+
+  .moduleTopics {
+    justify-content: center;
+  }
+}

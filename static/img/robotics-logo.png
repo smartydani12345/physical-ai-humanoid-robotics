@@ -1,0 +1,6 @@
+<!-- This is a placeholder - replace this file with your actual logo image at C:\Users\DELL\Desktop\daniyal\book-iamges\1b6677f3-bbdd-4088-af3b-39574783efb7(1)(1).png -->
+<svg xmlns="http://www.w3.org/2000/svg" width="200" height="50" viewBox="0 0 200 50">
+  <rect width="200" height="50" fill="#25c2a0"/>
+  <text x="100" y="30" font-family="Arial, sans-serif" font-size="16" fill="white" text-anchor="middle">LOGO</text>
+  <text x="100" y="45" font-family="Arial, sans-serif" font-size="10" fill="white" text-anchor="middle">Replace with actual image</text>
+</svg>
