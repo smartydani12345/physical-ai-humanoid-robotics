@@ -1,0 +1,504 @@
+/**
+ * CSS files with the .module.css suffix will be treated as CSS modules
+ * and scoped locally.
+ */
+
+.newDevelopmentsBanner {
+  padding: 4rem 0;
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(135deg, #2b3137 0%, #1a1f25 100%);
+  color: white;
+  min-height: 400px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@media screen and (max-width: 996px) {
+  .newDevelopmentsBanner {
+    padding: 2rem;
+    min-height: auto;
+  }
+}
+
+.newDevelopmentsContainer {
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.newDevelopmentsContent {
+  text-align: center;
+}
+
+.newDevelopmentsContent .hero__title {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+  line-height: 1.2;
+}
+
+.newDevelopmentsContent .hero__subtitle {
+  font-size: 1.2rem;
+  margin-bottom: 2rem;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+@media screen and (max-width: 996px) {
+  .newDevelopmentsContent .hero__title {
+    font-size: 2rem;
+  }
+
+  .newDevelopmentsContent .hero__subtitle {
+    font-size: 1.1rem;
+  }
+}
+
+.section {
+  padding: 4rem 0;
+}
+
+.sectionTitle {
+  font-size: 2rem;
+  margin-bottom: 2rem;
+  color: var(--ifm-color-primary);
+  text-align: center;
+}
+
+@media screen and (max-width: 996px) {
+  .section {
+    padding: 2rem 0;
+  }
+
+  .sectionTitle {
+    font-size: 1.75rem;
+  }
+}
+
+/* Statistics Grid */
+.statsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+
+.statCard {
+  background: var(--ifm-color-emphasis-100);
+  border-radius: 8px;
+  padding: 1.5rem;
+  text-align: center;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.statCard:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.15);
+}
+
+.statValue {
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: var(--ifm-color-primary);
+  margin-bottom: 0.5rem;
+}
+
+.statLabel {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--ifm-font-color-base);
+  margin-bottom: 0.5rem;
+}
+
+.statDescription {
+  font-size: 0.9rem;
+  color: var(--ifm-font-color-secondary);
+  margin: 0;
+  line-height: 1.5;
+}
+
+/* Research Highlights */
+.researchSection {
+  background-color: var(--ifm-background-color);
+}
+
+.researchGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+.researchHighlight {
+  background: white;
+  border-radius: 8px;
+  padding: 1.5rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border-left: 4px solid var(--ifm-color-primary);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.researchHighlight:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+.researchHeader {
+  margin-bottom: 1rem;
+}
+
+.researchTitle {
+  font-size: 1.25rem;
+  margin: 0 0 0.5rem 0;
+  color: var(--ifm-color-primary);
+}
+
+.researchInstitution {
+  display: inline-block;
+  background: var(--ifm-color-primary-lightest);
+  color: var(--ifm-color-primary);
+  padding: 0.25rem 0.75rem;
+  border-radius: 12px;
+  font-size: 0.85rem;
+  margin-right: 1rem;
+}
+
+.researchDate {
+  color: var(--ifm-font-color-secondary);
+  font-size: 0.85rem;
+}
+
+.researchDescription {
+  font-size: 0.95rem;
+  color: var(--ifm-font-color-secondary);
+  line-height: 1.6;
+  margin: 1rem 0;
+}
+
+.researchLink {
+  display: inline-block;
+  background: var(--ifm-color-primary);
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  text-decoration: none;
+  font-size: 0.9rem;
+  transition: background-color 0.2s;
+}
+
+.researchLink:hover {
+  background: var(--ifm-color-primary-dark);
+}
+
+/* Industry Updates */
+.industrySection {
+  background-color: #f8f9fa;
+}
+
+.industryList {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+
+.industryUpdate {
+  background: white;
+  border-radius: 8px;
+  padding: 1.5rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border-left: 4px solid #4caf50;
+}
+
+.industryHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.industryCompany {
+  font-size: 1.2rem;
+  margin: 0;
+  color: #2e7d32;
+  font-weight: 600;
+}
+
+.industryDate {
+  color: var(--ifm-font-color-secondary);
+  font-size: 0.9rem;
+}
+
+.industryUpdateText {
+  font-size: 1rem;
+  color: var(--ifm-font-color-base);
+  margin: 0.5rem 0 1rem 0;
+  line-height: 1.6;
+}
+
+.industryImpact {
+  font-size: 0.95rem;
+  color: var(--ifm-font-color-secondary);
+  margin: 0;
+  padding-top: 1rem;
+  border-top: 1px solid #e0e0e0;
+  font-style: italic;
+}
+
+@media screen and (max-width: 768px) {
+  .industryHeader {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .industryCompany {
+    width: 100%;
+  }
+}
+
+/* Technology Breakthroughs Section */
+.breakthroughSection {
+  background-color: #f0f4f8;
+}
+
+.breakthroughGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+
+.breakthroughCard {
+  background: white;
+  border-radius: 8px;
+  padding: 1.5rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border-left: 4px solid #ff9800;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.breakthroughCard:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+.breakthroughTitle {
+  font-size: 1.1rem;
+  margin: 0 0 0.75rem 0;
+  color: #e65100;
+  font-weight: 600;
+}
+
+.breakthroughDescription {
+  font-size: 0.95rem;
+  color: var(--ifm-font-color-base);
+  margin: 0 0 0.75rem 0;
+  line-height: 1.5;
+}
+
+.breakthroughImpact {
+  font-size: 0.9rem;
+  color: var(--ifm-font-color-secondary);
+  margin: 0 0 0.5rem 0;
+  font-style: italic;
+  line-height: 1.4;
+}
+
+.breakthroughDate {
+  display: block;
+  font-size: 0.8rem;
+  color: #666;
+  font-weight: 500;
+}
+
+/* Research Papers Section */
+.papersSection {
+  background-color: var(--ifm-background-color);
+}
+
+.papersList {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+
+.paperItem {
+  background: white;
+  border-radius: 8px;
+  padding: 1.5rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border-left: 4px solid #2196f3;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.paperItem:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+.paperTitle {
+  font-size: 1.1rem;
+  margin: 0 0 0.5rem 0;
+  color: #0d47a1;
+  font-weight: 600;
+}
+
+.paperAuthors {
+  font-size: 0.9rem;
+  color: #455a64;
+  margin: 0 0 0.25rem 0;
+  font-style: italic;
+}
+
+.paperJournal {
+  font-size: 0.85rem;
+  color: #607d8b;
+  margin: 0 0 0.5rem 0;
+  font-weight: 500;
+}
+
+.paperDate {
+  font-size: 0.8rem;
+  color: #78909c;
+  margin: 0 0 0.75rem 0;
+  display: inline-block;
+  background: #e3f2fd;
+  padding: 0.2rem 0.5rem;
+  border-radius: 4px;
+}
+
+.paperAbstract {
+  font-size: 0.95rem;
+  color: var(--ifm-font-color-base);
+  margin: 0;
+  line-height: 1.6;
+  padding-top: 0.75rem;
+  border-top: 1px solid #e0e0e0;
+}
+
+/* Trends Section */
+.trendsSection {
+  background-color: var(--ifm-background-color);
+}
+
+.trendsContent {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+.trendsText h3 {
+  color: var(--ifm-color-primary);
+  margin-top: 0;
+}
+
+.trendsList {
+  padding-left: 1.2rem;
+}
+
+.trendsList li {
+  margin-bottom: 0.75rem;
+  line-height: 1.6;
+}
+
+.trendsChart {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.chartPlaceholder {
+  background: white;
+  border-radius: 8px;
+  padding: 1.5rem;
+  text-align: center;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.chartBarContainer {
+  display: flex;
+  justify-content: space-around;
+  align-items: flex-end;
+  height: 150px;
+  margin: 1rem 0;
+  padding: 1rem;
+  background: #f5f5f5;
+  border-radius: 4px;
+}
+
+.chartBar {
+  width: 30px;
+  background: var(--ifm-color-primary);
+  border-radius: 4px 4px 0 0;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  color: white;
+  font-size: 0.7rem;
+  font-weight: bold;
+}
+
+@media screen and (max-width: 996px) {
+  .trendsContent {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Institutions Grid */
+.institutionsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+
+.institutionCard {
+  background: white;
+  border-radius: 8px;
+  padding: 1.5rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.institutionCard:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+.institutionCard h3 {
+  font-size: 1.1rem;
+  margin: 0 0 1rem 0;
+  color: var(--ifm-color-primary);
+  min-height: 2.5rem;
+}
+
+.institutionCard p {
+  margin: 0;
+  color: var(--ifm-font-color-secondary);
+  line-height: 1.6;
+}
+
+/* Responsive adjustments */
+@media screen and (max-width: 768px) {
+  .statsGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .researchGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .institutionCard h3 {
+    min-height: auto;
+  }
+}

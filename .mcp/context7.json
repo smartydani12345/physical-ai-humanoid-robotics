@@ -1,0 +1,33 @@
+{
+  "name": "context7",
+  "description": "Context7 MCP Server for Physical AI & Humanoid Robotics Project",
+  "version": "1.0.0",
+  "endpoints": {
+    "health": "/health",
+    "capabilities": "/capabilities",
+    "resources": "/resources"
+  },
+  "resources": {
+    "context7:files": {
+      "description": "Access to project files and documentation",
+      "read": true,
+      "write": true
+    },
+    "context7:specs": {
+      "description": "Access to project specifications",
+      "read": true,
+      "write": true
+    },
+    "context7:code": {
+      "description": "Access to source code",
+      "read": true,
+      "write": true
+    }
+  },
+  "config": {
+    "host": "localhost",
+    "port": 8087,
+    "basePath": "/context7",
+    "timeout": 30000
+  }
+}

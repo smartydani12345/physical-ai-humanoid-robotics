@@ -1,0 +1,10 @@
+This file represents task-decomposition.png
+The image should show:
+- High-level goal/command input at the top
+- Task decomposition module in the middle
+- Hierarchical breakdown of tasks (parent tasks with child subtasks)
+- Dependency relationships between tasks
+- Execution sequence arrows
+- Conditional branches for different scenarios
+- Feedback loops for adaptive planning
+- Output: executable primitive actions at the bottom

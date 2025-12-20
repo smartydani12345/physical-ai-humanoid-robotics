@@ -1,0 +1,14 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(git add --all)",
+      "Bash(git config --global user.email \"noreply@anthropic.com\")",
+      "Bash(git config --global user.name \"Claude Sonnet 4.5\")",
+      "Bash(git commit -m \"feat: deploy frontend for Physical AI & Humanoid Robotics website\n\n- Remove unnecessary hero cards from Hero section\n- Replace Chapter 3 mermaid diagrams with ASCII code snippets\n- Update research and industry sections with functional clickable buttons\n- Ensure zero build errors with responsive UI\n- Complete frontend validation and build process\n\n🤖 Generated with [Claude Code](https://claude.com/claude-code)\n\nCo-Authored-By: Claude Sonnet 4.5 <noreply@anthropic.com>\")",
+      "Bash(git remote add origin https://github.com/smartydani12345/physical-ai-humanoid-robotics.git)",
+      "Bash(git branch -M main)",
+      "Bash(git push -u origin main)",
+      "Bash(gh repo create smartydani12345/physical-ai-humanoid-robotics --public --description \"Physical AI & Humanoid Robotics Docusaurus Website\")"
+    ]
+  }
+}

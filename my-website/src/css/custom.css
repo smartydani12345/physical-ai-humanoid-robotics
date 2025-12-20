@@ -1,0 +1,76 @@
+/**
+ * Any CSS rules here will be applied to the entire website.
+ */
+
+/* Custom Color Palette */
+:root {
+  --ifm-color-primary: #3f51b5; /* Indigo */
+  --ifm-color-primary-dark: #303f9f;
+  --ifm-color-primary-darker: #283593;
+  --ifm-color-primary-darkest: #1a237e;
+  --ifm-color-primary-light: #7986cb;
+  --ifm-color-primary-lighter: #9fa8da;
+  --ifm-color-primary-lightest: #c5cae9;
+  --ifm-color-secondary: #00bcd4; /* Cyan */
+  --ifm-color-success: #4caf50;
+  --ifm-color-warning: #ffc107;
+  --ifm-color-danger: #f44336;
+  --ifm-color-info: #2196f3;
+
+  /* Text Colors */
+  --ifm-font-color-base: #212121; /* Dark grey for body text */
+  --ifm-font-color-secondary: #757575; /* Medium grey for secondary text */
+  --ifm-background-color: #f5f5f5; /* Light grey background */
+  --ifm-background-color-dark: #e0e0e0;
+
+  /* Docusaurus defaults */
+  --ifm-code-font-size: 95%;
+  --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.1);
+}
+
+/* Dark Mode Overrides */
+[data-theme='dark'] {
+  --ifm-color-primary: #7986cb;
+  --ifm-color-primary-dark: #5c6bc0;
+  --ifm-color-primary-darker: #3f51b5;
+  --ifm-color-primary-darkest: #303f9f;
+  --ifm-color-primary-light: #9fa8da;
+  --ifm-color-primary-lighter: #c5cae9;
+  --ifm-color-primary-lightest: #e8eaf6;
+  --ifm-color-secondary: #26c6da;
+
+  /* Text Colors */
+  --ifm-font-color-base: #e0e0e0; /* Light grey for body text */
+  --ifm-font-color-secondary: #bdbdbd; /* Lighter grey for secondary text */
+  --ifm-background-color: #212121; /* Dark background */
+  --ifm-background-color-dark: #424242;
+
+  --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
+}
+
+/* Custom Fonts (using system fonts for broad compatibility) */
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: "Roboto", sans-serif;
+  font-weight: 500;
+}
+
+/* Navbar logo styling */
+.navbar__logo img {
+  width: 40px;
+  height: 40px;
+  object-fit: contain;
+}
+
+/* Further styling for specific components can go here */
+.footer {
+  background-color: var(--ifm-color-primary-darkest);
+  color: var(--ifm-font-color-base);
+}
+
+.navbar {
+  box-shadow: var(--ifm-navbar-shadow);
+}

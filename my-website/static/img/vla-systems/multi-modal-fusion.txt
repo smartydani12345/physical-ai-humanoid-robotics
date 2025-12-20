@@ -1,0 +1,7 @@
+This file represents multi-modal-fusion.png
+The image should show:
+- Three input streams: Visual (camera icon), Linguistic (speech bubble), Action Context (robot icon)
+- Processing layers showing Early Fusion, Intermediate Fusion, and Late Fusion approaches
+- Neural network layers combining information from different modalities
+- Output: Unified representation suitable for action generation
+- Comparison of different fusion strategies and their trade-offs

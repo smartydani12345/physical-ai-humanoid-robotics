@@ -1,0 +1,157 @@
+.codeRunner {
+  border: 1px solid;
+  border-radius: 8px;
+  overflow: hidden;
+  margin: 1.5rem 0;
+  font-family: 'SFMono-Regular', 'Consolas', 'Liberation Mono', 'Menlo', monospace;
+  font-size: 0.9rem;
+}
+
+.codeRunner.light {
+  border-color: #e0e0e0;
+  background-color: white;
+}
+
+.codeRunner.dark {
+  border-color: #333;
+  background-color: #1a1a1a;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.75rem 1rem;
+  border-bottom: 1px solid;
+  background-color: #f8f9fa;
+}
+
+.header.light {
+  border-color: #e0e0e0;
+  background-color: #f8f9fa;
+}
+
+.header.dark {
+  border-color: #333;
+  background-color: #2b3137;
+  color: white;
+}
+
+.title {
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+.controls {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.runButton, .copyButton {
+  padding: 0.25rem 0.75rem;
+  border: 1px solid;
+  border-radius: 4px;
+  font-size: 0.8rem;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.runButton.light, .copyButton.light {
+  background-color: #2e855b;
+  color: white;
+  border-color: #2e855b;
+}
+
+.runButton.dark, .copyButton.dark {
+  background-color: #25c2a0;
+  color: #2b3137;
+  border-color: #25c2a0;
+}
+
+.runButton:hover, .copyButton:hover {
+  opacity: 0.9;
+}
+
+.runButton:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.codeBlock {
+  margin: 0;
+  padding: 1rem;
+  overflow-x: auto;
+  max-height: 300px;
+  overflow-y: auto;
+}
+
+.codeBlock.light {
+  background-color: #f8f9fa;
+  color: #2b3137;
+}
+
+.codeBlock.dark {
+  background-color: #1e1e1e;
+  color: #d4d4d4;
+}
+
+.codeBlock code {
+  font-family: inherit;
+  font-size: inherit;
+  line-height: 1.5;
+}
+
+.outputContainer {
+  border-top: 1px solid;
+  margin-top: 0;
+}
+
+.outputContainer.light {
+  border-color: #e0e0e0;
+}
+
+.outputContainer.dark {
+  border-color: #333;
+}
+
+.outputHeader {
+  padding: 0.5rem 1rem;
+  font-weight: 600;
+  font-size: 0.85rem;
+  background-color: #e9ecef;
+}
+
+.outputHeader.light {
+  background-color: #e9ecef;
+  color: #2b3137;
+}
+
+.outputHeader.dark {
+  background-color: #3c424a;
+  color: white;
+}
+
+.output {
+  margin: 0;
+  padding: 1rem;
+  overflow-x: auto;
+  max-height: 200px;
+  overflow-y: auto;
+  font-size: 0.85rem;
+  line-height: 1.5;
+}
+
+.output.light {
+  background-color: #f8f9fa;
+  color: #2b3137;
+}
+
+.output.dark {
+  background-color: #1e1e1e;
+  color: #d4d4d4;
+}
+
+.output code {
+  font-family: inherit;
+  font-size: inherit;
+}

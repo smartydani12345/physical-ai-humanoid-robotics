@@ -1,0 +1,45 @@
+{
+  "name": "github",
+  "description": "GitHub MCP Server for Physical AI & Humanoid Robotics Project",
+  "version": "1.0.0",
+  "endpoints": {
+    "health": "/health",
+    "capabilities": "/capabilities",
+    "resources": "/resources",
+    "repos": "/repos",
+    "issues": "/issues",
+    "pulls": "/pulls"
+  },
+  "resources": {
+    "github:repos": {
+      "description": "Access to GitHub repositories",
+      "read": true,
+      "write": true
+    },
+    "github:issues": {
+      "description": "Access to GitHub issues",
+      "read": true,
+      "write": true
+    },
+    "github:pulls": {
+      "description": "Access to GitHub pull requests",
+      "read": true,
+      "write": true
+    },
+    "github:commits": {
+      "description": "Access to GitHub commits",
+      "read": true,
+      "write": true
+    }
+  },
+  "config": {
+    "host": "api.github.com",
+    "port": 443,
+    "basePath": "/",
+    "timeout": 30000,
+    "auth": {
+      "type": "bearer",
+      "header": "Authorization"
+    }
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "version": 2,
+  "framework": "docusaurus",
+  "settings": {
+    "nodeVersion": "18.x",
+    "buildCommand": "npm run build",
+    "outputDirectory": "build",
+    "rootDirectory": "my-website"
+  },
+  "env": {
+    "NODE_VERSION": "18.x"
+  }
+}

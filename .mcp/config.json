@@ -1,0 +1,21 @@
+{
+  "version": "1.0.0",
+  "servers": [
+    {
+      "name": "context7",
+      "path": "./context7.json",
+      "enabled": true
+    },
+    {
+      "name": "github",
+      "path": "./github.json",
+      "enabled": true
+    }
+  ],
+  "defaultServer": "context7",
+  "settings": {
+    "autoDiscover": true,
+    "connectionTimeout": 30000,
+    "requestTimeout": 60000
+  }
+}
