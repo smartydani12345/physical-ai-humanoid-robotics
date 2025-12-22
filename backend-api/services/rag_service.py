@@ -9,6 +9,7 @@ import os
 from dataclasses import dataclass
 
 from services.database_service import DatabaseService
+from config import settings
 
 # Configure logging
 logging.basicConfig(level=logging.INFO)
@@ -36,15 +37,15 @@ class RAGService:
     @property
     def cohere_client(self):
         if self._cohere_client is None:
-            self._cohere_client = cohere.Client(os.getenv("COHERE_API_KEY"))
+            self._cohere_client = cohere.Client(settings.cohere_api_key)
         return self._cohere_client
 
     @property
     def qdrant_client(self):
         if self._qdrant_client is None:
             self._qdrant_client = QdrantClient(
-                url=os.getenv("QDRANT_URL"),
-                api_key=os.getenv("QDRANT_API_KEY"),
+                url=settings.qdrant_url,
+                api_key=settings.qdrant_api_key,
             )
         return self._qdrant_client
 
@@ -53,7 +54,7 @@ class RAGService:
         if self._openai_client is None:
             # Initialize OpenAI client with Gemini-compatible endpoint
             self._openai_client = OpenAI(
-                api_key=os.getenv("GEMINI_API_KEY"),
+                api_key=settings.gemini_api_key,
                 base_url="https://generativelanguage.googleapis.com/v1beta/openai/"  # Gemini OpenAI-compatible endpoint
             )
         return self._openai_client

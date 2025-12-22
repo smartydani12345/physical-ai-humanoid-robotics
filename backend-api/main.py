@@ -3,6 +3,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from dotenv import load_dotenv
 import os
 import logging
+from config import settings
 
 # Load environment variables
 load_dotenv()
@@ -40,6 +41,15 @@ rag_service_instance = None
 @app.on_event("startup")
 async def startup_event():
     """Initialize services on application startup"""
+    logger.info("Validating environment variables...")
+    try:
+        # This will raise an exception if required variables are missing
+        _ = settings.api_token  # Access the settings to trigger validation
+        logger.info("Environment variables validated successfully")
+    except ValueError as e:
+        logger.error(f"Environment variable validation failed: {str(e)}")
+        raise
+
     logger.info("Initializing RAG service...")
     try:
         from services.rag_service import RAGService
@@ -49,6 +59,7 @@ async def startup_event():
         logger.info("RAG service initialized successfully")
     except Exception as e:
         logger.error(f"Error initializing RAG service: {str(e)}")
+        raise
 
 @app.on_event("shutdown")
 async def shutdown_event():

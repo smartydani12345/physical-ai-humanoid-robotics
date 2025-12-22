@@ -6,16 +6,14 @@ import json
 from pathlib import Path
 
 from services.document_processor import DocumentProcessor
+from config import settings
 
 router = APIRouter()
-
-# Get API token from environment
-API_TOKEN = os.getenv("API_TOKEN")
 
 def verify_api_token(request: Request):
     """Verify the API token in the x-api-token header"""
     token = request.headers.get("x-api-token")
-    if not token or token != API_TOKEN:
+    if not token or token != settings.api_token:
         raise HTTPException(status_code=401, detail="Invalid or missing API token")
 
 class ContentSearchRequest(BaseModel):
@@ -36,48 +34,33 @@ class ReindexResponse(BaseModel):
 @router.post("/content/search", response_model=ContentSearchResponse)
 async def search_content(request: ContentSearchRequest, token: str = Depends(verify_api_token)):
     """
-    Search through the textbook content
+    Search through the textbook content using vector search in Qdrant
     """
     try:
-        # This is a simplified search - in a real implementation, this would query the vector database
-        # For now, we'll return some sample results
-        sample_results = [
-            {
-                "id": "chapter-5-intro",
-                "title": "Introduction to VLA Systems",
-                "content": "Vision-Language-Action (VLA) systems represent a paradigm shift in robotics, integrating perception, understanding, and action into unified AI frameworks...",
-                "url": "/docs/my-book/chapter-5#1-introduction-to-vla-systems",
-                "score": 0.95
-            },
-            {
-                "id": "chapter-5-whisper",
-                "title": "Voice-to-Action Implementation with Whisper",
-                "content": "Whisper is used in VLA systems for voice-to-action processing. Whisper processes audio input to convert spoken commands to text...",
-                "url": "/docs/my-book/chapter-5#voice-to-action-implementation",
-                "score": 0.89
-            },
-            {
-                "id": "chapter-5-cognitive-planning",
-                "title": "Cognitive Planning in VLA Systems",
-                "content": "Cognitive planning is a critical component of VLA systems that bridges high-level commands with executable actions...",
-                "url": "/docs/my-book/chapter-5#cognitive-planning-in-vla-systems",
-                "score": 0.87
-            }
-        ]
+        from services.rag_service import RAGService
+        rag_service = RAGService()
 
-        # Filter results based on query (simplified)
-        query_lower = request.query.lower()
-        filtered_results = []
+        # Find relevant documents from Qdrant
+        documents = rag_service._find_relevant_documents(request.query, top_k=request.limit)
 
-        for result in sample_results:
-            if query_lower in result["title"].lower() or query_lower in result["content"].lower():
-                filtered_results.append(result)
+        # Convert documents to search results format
+        results = []
+        for doc in documents:
+            # Extract title from content (first sentence or first 100 chars)
+            content_preview = doc.content[:500]  # Limit content preview
+            title = doc.metadata.get("section", "Untitled")
 
-        # Limit results
-        limited_results = filtered_results[:request.limit]
+            results.append({
+                "id": doc.id,
+                "title": title,
+                "content": content_preview,
+                "url": doc.metadata.get("source_url", ""),
+                "score": doc.metadata.get("score", 0.0)
+            })
 
-        return ContentSearchResponse(results=limited_results)
+        return ContentSearchResponse(results=results)
     except Exception as e:
+        logger.error(f"Error in content search: {str(e)}")
         raise HTTPException(status_code=500, detail=str(e))
 
 @router.post("/content/reindex")

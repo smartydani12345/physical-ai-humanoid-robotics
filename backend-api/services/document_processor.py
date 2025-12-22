@@ -8,6 +8,7 @@ from qdrant_client import QdrantClient
 from qdrant_client.http import models
 import cohere
 from dataclasses import dataclass
+from config import settings
 
 # Configure logging
 logging.basicConfig(level=logging.INFO)
@@ -22,16 +23,16 @@ class DocumentChunk:
 class DocumentProcessor:
     def __init__(self):
         # Initialize Cohere client for embeddings
-        self.cohere_client = cohere.Client(os.getenv("COHERE_API_KEY"))
+        self.cohere_client = cohere.Client(settings.cohere_api_key)
 
         # Initialize Qdrant client
         self.qdrant_client = QdrantClient(
-            url=os.getenv("QDRANT_URL"),
-            api_key=os.getenv("QDRANT_API_KEY"),
+            url=settings.qdrant_url,
+            api_key=settings.qdrant_api_key,
         )
 
         # Collection name for textbook content
-        self.collection_name = "humanoid_ai_book"
+        self.collection_name = settings.qdrant_collection_name
 
         # Ensure collection exists
         self._ensure_collection_exists()

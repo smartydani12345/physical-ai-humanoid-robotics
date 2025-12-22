@@ -14,13 +14,12 @@ logger = logging.getLogger(__name__)
 
 router = APIRouter()
 
-# Get API token from environment
-API_TOKEN = os.getenv("API_TOKEN")
+from config import settings
 
 def verify_api_token(request: Request):
     """Verify the API token in the x-api-token header"""
     token = request.headers.get("x-api-token")
-    if not token or token != API_TOKEN:
+    if not token or token != settings.api_token:
         raise HTTPException(status_code=401, detail="Invalid or missing API token")
 
 @router.post("/chat", response_model=ChatResponse)
