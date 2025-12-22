@@ -1,0 +1,7 @@
+This file represents whisper-flow.png
+The image should show:
+- Audio input (microphone icon)
+- Whisper model processing block
+- Text output (recognized command)
+- Connection to command parsing module
+- Flow from speech to text to action mapping

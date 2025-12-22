@@ -1,0 +1,9 @@
+This file represents command-to-task.png
+The image should show:
+- High-level command input (linguistic)
+- Natural language processing module
+- Task decomposition engine
+- Hierarchical breakdown of tasks
+- Action primitives output
+- Feedback loops for adaptation
+- Integration with perception system for environmental awareness

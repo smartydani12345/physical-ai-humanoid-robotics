@@ -1,0 +1,8 @@
+This file represents whisper-integration.png
+The image should show:
+- Audio input from microphone
+- Whisper model processing
+- Speech-to-text conversion
+- Text command output
+- Integration with VLA system
+- Components: Audio preprocessing, Whisper model, Text processing, Command mapping

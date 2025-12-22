@@ -1,0 +1,8 @@
+This file represents cognitive-planning.png
+The image should show:
+- High-level goal/command input
+- Task decomposition module
+- Subtask generation (Task 1, Task 2, Task 3...)
+- Dependencies between tasks
+- Execution sequence
+- Feedback loops for adaptive planning
