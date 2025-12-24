@@ -3,10 +3,13 @@ from fastapi.middleware.cors import CORSMiddleware
 from dotenv import load_dotenv
 import os
 import logging
-from config import settings
+from pathlib import Path
 
-# Load environment variables
-load_dotenv()
+# Load environment variables from .env file in the backend-api directory
+env_path = Path(__file__).parent / ".env"
+load_dotenv(dotenv_path=env_path)
+
+from config import settings
 
 # Configure logging
 logging.basicConfig(level=logging.INFO)
@@ -55,8 +58,16 @@ async def startup_event():
         from services.rag_service import RAGService
         global rag_service_instance
         rag_service_instance = RAGService()
-        await rag_service_instance.initialize_services()
-        logger.info("RAG service initialized successfully")
+
+        # Initialize RAG service - allow partial initialization if database fails
+        try:
+            await rag_service_instance.initialize_services()
+            logger.info("RAG service initialized successfully with database")
+        except Exception as db_error:
+            logger.warning(f"Database initialization failed (this is OK for basic functionality): {str(db_error)}")
+            logger.info("RAG service initialized with Qdrant only (no chat history persistence)")
+
+        logger.info("RAG service initialization completed")
     except Exception as e:
         logger.error(f"Error initializing RAG service: {str(e)}")
         raise

@@ -17,12 +17,14 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).parent))
 
 from dotenv import load_dotenv
+
+# Load environment variables from .env file in the backend-api directory
+env_path = Path(__file__).parent / ".env"
+load_dotenv(dotenv_path=env_path)
+
 from services.document_processor import DocumentProcessor
 from services.rag_service import RAGService
 from services.database_service import DatabaseService
-
-# Load environment variables
-load_dotenv()
 
 async def setup_database():
     """Set up the database schema"""
@@ -35,7 +37,7 @@ async def setup_database():
         # Connect to the database
         neon_url = os.getenv("NEON_URL")
         if not neon_url:
-            print("❌ NEON_URL environment variable not set!")
+            print("X NEON_URL environment variable not set!")
             return False
 
         # Extract database connection info from the URL
@@ -62,10 +64,10 @@ async def setup_database():
         await conn.execute(schema_sql)
         await conn.close()
 
-        print("✅ Database schema set up successfully!")
+        print("✓ Database schema set up successfully!")
         return True
     except Exception as e:
-        print(f"❌ Error setting up database schema: {str(e)}")
+        print(f"X Error setting up database schema: {str(e)}")
         return False
 
 async def index_documents():
@@ -85,13 +87,13 @@ async def index_documents():
         if success:
             stats_after = processor.get_collection_stats()
             print(f"Documents after indexing: {stats_after.get('vector_count', 0)}")
-            print("✅ Document indexing completed successfully!")
+            print("✓ Document indexing completed successfully!")
             return True
         else:
-            print("❌ Document indexing failed!")
+            print("X Document indexing failed!")
             return False
     except Exception as e:
-        print(f"❌ Error indexing documents: {str(e)}")
+        print(f"X Error indexing documents: {str(e)}")
         return False
 
 async def verify_services():
@@ -106,9 +108,9 @@ async def verify_services():
         # Test health check
         is_healthy = rag_service.health_check()
         if is_healthy:
-            print("✅ RAG service is healthy!")
+            print("✓ RAG service is healthy!")
         else:
-            print("❌ RAG service health check failed!")
+            print("X RAG service health check failed!")
             return False
 
         # Test a simple query
@@ -118,19 +120,19 @@ async def verify_services():
         )
 
         if result["response"] and result["response"] != "I don't know":
-            print("✅ RAG service query test passed!")
+            print("✓ RAG service query test passed!")
         else:
-            print("⚠️ RAG service query returned 'I don't know' - this might be expected if no documents are indexed yet")
+            print("? RAG service query returned 'I don't know' - this might be expected if no documents are indexed yet")
 
         await rag_service.db_service.close()
         return True
     except Exception as e:
-        print(f"❌ Error verifying services: {str(e)}")
+        print(f"X Error verifying services: {str(e)}")
         return False
 
 async def main():
     """Main initialization function"""
-    print("🚀 Starting Physical AI & Humanoid Robotics RAG Chatbot initialization...")
+    print("Starting Physical AI & Humanoid Robotics RAG Chatbot initialization...")
     print()
 
     results = []
@@ -154,11 +156,11 @@ async def main():
     print(f"Initialization Summary: {passed}/{total} steps completed successfully")
 
     if passed == total:
-        print("🎉 Initialization completed successfully!")
-        print("✅ You can now start the application with: uvicorn main:app --reload")
+        print("Initialization completed successfully!")
+        print("✓ You can now start the application with: uvicorn main:app --reload")
         return True
     else:
-        print("⚠️ Some initialization steps failed. Please check the logs above.")
+        print("? Some initialization steps failed. Please check the logs above.")
         return False
 
 if __name__ == "__main__":

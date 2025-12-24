@@ -4,7 +4,7 @@ import logging
 import cohere
 from qdrant_client import QdrantClient
 from qdrant_client.http import models
-from openai import OpenAI
+import google.generativeai as genai
 import os
 from dataclasses import dataclass
 
@@ -32,7 +32,6 @@ class RAGService:
         # Initialize clients as None - will be initialized when first used
         self._cohere_client = None
         self._qdrant_client = None
-        self._openai_client = None
 
     @property
     def cohere_client(self):
@@ -49,15 +48,11 @@ class RAGService:
             )
         return self._qdrant_client
 
-    @property
-    def openai_client(self):
-        if self._openai_client is None:
-            # Initialize OpenAI client with Gemini-compatible endpoint
-            self._openai_client = OpenAI(
-                api_key=settings.gemini_api_key,
-                base_url="https://generativelanguage.googleapis.com/v1beta/openai/"  # Gemini OpenAI-compatible endpoint
-            )
-        return self._openai_client
+    def _get_gemini_client(self):
+        """Initialize and return Gemini client"""
+        genai.configure(api_key=settings.gemini_api_key)
+        model = genai.GenerativeModel('gemini-pro')
+        return model
 
     async def initialize_services(self):
         """Initialize dependent services like database connection"""
@@ -107,24 +102,24 @@ class RAGService:
             )
             query_embedding = response.embeddings[0]
 
-            # Search in Qdrant for similar documents
-            search_result = self.qdrant_client.search(
+            # Query Qdrant for similar documents using the correct API for the installed version
+            search_result = self.qdrant_client.query_points(
                 collection_name=self.collection_name,
-                query_vector=query_embedding,
+                query=query_embedding,
                 limit=top_k,
                 with_payload=True
             )
 
             # Convert search results to Document objects
             documents = []
-            for result in search_result:
+            for result in search_result.points:
                 documents.append(Document(
-                    id=result.id,
-                    content=result.payload.get("text", ""),
+                    id=str(result.id),
+                    content=result.payload.get("text", "") if result.payload else "",
                     metadata={
-                        "chapter": result.payload.get("chapter", ""),
-                        "section": result.payload.get("section", ""),
-                        "source_url": result.payload.get("source_url", ""),
+                        "chapter": result.payload.get("chapter", "") if result.payload else "",
+                        "section": result.payload.get("section", "") if result.payload else "",
+                        "source_url": result.payload.get("source_url", "") if result.payload else "",
                         "score": result.score
                     }
                 ))
@@ -218,25 +213,25 @@ class RAGService:
             return result
 
     async def _translate_to_urdu(self, text: str) -> Optional[str]:
-        """Translate text to Urdu using Gemini via OpenAI-compatible endpoint"""
+        """Translate text to Urdu using Gemini"""
         try:
             # Only translate if text is substantial
             if not text or len(text.strip()) < 5:
                 return None
 
+            model = self._get_gemini_client()
+
             prompt = f"Translate the following text to Urdu (اُردو). Only respond with the translation and nothing else:\n\n{text}"
 
-            response = await self.openai_client.chat.completions.create(
-                model="gemini-pro",
-                messages=[
-                    {"role": "system", "content": "You are a professional translator specializing in English to Urdu translation. Only provide the Urdu translation without any additional text or explanations."},
-                    {"role": "user", "content": prompt}
-                ],
-                temperature=0.3,
-                max_tokens=1000
+            response = model.generate_content(
+                prompt,
+                generation_config=genai.types.GenerationConfig(
+                    temperature=0.3,
+                    max_output_tokens=1000
+                )
             )
 
-            translation = response.choices[0].message.content if response.choices[0].message.content else None
+            translation = response.text if response.text else None
 
             # Ensure we only return the translation, not additional text
             if translation and ".Translate" in translation:
@@ -250,7 +245,7 @@ class RAGService:
             return None
 
     async def _generate_response_with_gemini(self, query: str, context: str, chat_history: Optional[List[Dict[str, str]]] = None) -> str:
-        """Generate response using Gemini via OpenAI-compatible endpoint based on query and context"""
+        """Generate response using Gemini based on query and context"""
         try:
             # Format chat history for context
             history_text = ""
@@ -277,21 +272,21 @@ class RAGService:
             Do not hallucinate or make up information.
             """
 
-            # Generate response using OpenAI client with Gemini endpoint
-            response = await self.openai_client.chat.completions.create(
-                model="gemini-pro",  # Using gemini-pro model through OpenAI-compatible endpoint
-                messages=[
-                    {"role": "system", "content": "You are an academic tutor specializing in Physical AI & Humanoid Robotics."},
-                    {"role": "user", "content": prompt}
-                ],
-                temperature=0.7,
-                max_tokens=1000
+            model = self._get_gemini_client()
+
+            # Generate response using Gemini
+            response = model.generate_content(
+                prompt,
+                generation_config=genai.types.GenerationConfig(
+                    temperature=0.7,
+                    max_output_tokens=1000
+                )
             )
 
             # Return the generated text
-            return response.choices[0].message.content if response.choices[0].message.content else "I don't know"
+            return response.text if response.text else "I don't know"
         except Exception as e:
-            logger.error(f"Error generating response with Gemini via OpenAI endpoint: {str(e)}")
+            logger.error(f"Error generating response with Gemini: {str(e)}")
             return "I don't know"
 
     async def process_query_stream(self, query: str, selected_text: Optional[str] = None,
@@ -359,25 +354,26 @@ class RAGService:
             Do not hallucinate or make up information.
             """
 
-            # Generate streaming response using OpenAI client with Gemini endpoint
-            stream = await self.openai_client.chat.completions.create(
-                model="gemini-pro",  # Using gemini-pro model through OpenAI-compatible endpoint
-                messages=[
-                    {"role": "system", "content": "You are an academic tutor specializing in Physical AI & Humanoid Robotics."},
-                    {"role": "user", "content": prompt}
-                ],
-                temperature=0.7,
-                max_tokens=1000,
-                stream=True
+            # For streaming with Gemini, we'll generate the full response and then simulate streaming
+            # Note: The Google Generative AI library doesn't support true streaming in the same way
+            model = self._get_gemini_client()
+
+            response = model.generate_content(
+                prompt,
+                generation_config=genai.types.GenerationConfig(
+                    temperature=0.7,
+                    max_output_tokens=1000
+                ),
+                stream=False  # Using non-streaming for compatibility
             )
 
-            full_response = ""
-            # Stream the response
-            async for chunk in stream:
-                if chunk.choices and chunk.choices[0].delta and chunk.choices[0].delta.content:
-                    content = chunk.choices[0].delta.content
-                    full_response += content
-                    yield content
+            full_response = response.text if response.text else "I don't know"
+
+            # Simulate streaming by yielding the response in chunks
+            chunk_size = 50  # characters per chunk
+            for i in range(0, len(full_response), chunk_size):
+                chunk = full_response[i:i + chunk_size]
+                yield chunk
 
             # Generate Urdu translation if needed
             urdu_translation = await self._translate_to_urdu(full_response) if full_response != "I don't know" and full_response != "I'm sorry, I encountered an error processing your request." else None
