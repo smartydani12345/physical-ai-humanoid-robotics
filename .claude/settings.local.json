@@ -8,7 +8,9 @@
       "Bash(git remote add origin https://github.com/smartydani12345/physical-ai-humanoid-robotics.git)",
       "Bash(git branch -M main)",
       "Bash(git push -u origin main)",
-      "Bash(gh repo create smartydani12345/physical-ai-humanoid-robotics --public --description \"Physical AI & Humanoid Robotics Docusaurus Website\")"
+      "Bash(gh repo create smartydani12345/physical-ai-humanoid-robotics --public --description \"Physical AI & Humanoid Robotics Docusaurus Website\")",
+      "Bash(netstat -ano)",
+      "Bash(findstr :3000)"
     ]
   }
 }

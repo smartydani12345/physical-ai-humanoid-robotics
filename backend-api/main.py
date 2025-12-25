@@ -47,9 +47,20 @@ async def startup_event():
     logger.info("Validating environment variables...")
     try:
         # This will raise an exception if required variables are missing
-        _ = settings.api_token  # Access the settings to trigger validation
+        # Validate that we have at least one working API key
+        _ = settings.gemini_api_key
+        logger.info("Gemini API key validated successfully")
+
+        # Try to validate grok as well if possible
+        try:
+            if hasattr(settings, 'grok_api_key'):
+                _ = settings.grok_api_key
+                logger.info("Grok API key also available")
+        except AttributeError:
+            logger.info("Grok API key not available in current settings (expected if using cached config)")
+
         logger.info("Environment variables validated successfully")
-    except ValueError as e:
+    except Exception as e:
         logger.error(f"Environment variable validation failed: {str(e)}")
         raise
 

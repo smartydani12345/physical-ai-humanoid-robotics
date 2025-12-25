@@ -7,7 +7,9 @@ class Settings(BaseSettings):
     qdrant_url: str
     qdrant_api_key: str
     gemini_api_key: str
+    grok_api_key: str
     neon_url: str
+    api_token: str
 
     # Qdrant settings
     qdrant_collection_name: str = "textbook_content"
